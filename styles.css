@@ -1,8 +1,29 @@
 body {
     font-size: 16px;
 }
-
 #board {
     text-align: center;
     padding: 3em;
+}
+.row {
+    clear: both;
+    width: 302px;
+    margin: 0 auto;
+}
+.row div {
+    float: left;
+    height: 100px;
+    width: 100px;
+}
+.row .top {
+    border-bottom: 1px solid #000;
+}
+.row .bottom {
+    border-top: 1px solid #000;
+}
+.row .left {
+    border-right: 1px solid #000;
+}
+.row .right {
+    border-left: 1px solid #000;
 }
