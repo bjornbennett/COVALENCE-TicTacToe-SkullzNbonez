@@ -1,8 +1,8 @@
 // variables
-let firstName = "Bjorn",
-    lastName = "Bennett";
+let firstName = "Bobby",
+    lastName = "Brown";
 // const, modern var, unchanging
-const fullName = "Bjorn Bennett";
+const fullName = "Bobby Brown";
 // let, modern var. var is function scoped, and let is block scoped
 let person = {
     age: "29",
@@ -11,4 +11,10 @@ let person = {
 // array
 let listStuff = [ 'yes', 'no', 'maybe'];
 
-console.log( typeof fullName );
+let personTemplate = {
+    firstName: "Bobby",
+    lastName: "Brown",
+    age: 20
+};
+
+console.log( Object.keys(personTemplate) );
