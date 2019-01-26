@@ -17,4 +17,11 @@ let personTemplate = {
     age: 20
 };
 
+let val1 = 15,
+    val2 = 22;
+
+// x += y is shorthand for x = x + y.
+console.log(val1 += val2);
+
+// .keys tells the key part of key/value pairs
 console.log( Object.keys(personTemplate) );
