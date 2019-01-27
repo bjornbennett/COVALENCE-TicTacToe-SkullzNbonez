@@ -53,4 +53,3 @@ while( count < friends.length ){
     console.log('friends array: #'+friends[count]);
     count++;
 }
-
