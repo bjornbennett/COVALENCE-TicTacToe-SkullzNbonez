@@ -1,15 +1,15 @@
 // gather all squares into array
 let cells = document.querySelectorAll('.row div'),
     clickCount = 0,
-    checkBoard = [
-      ['one', 'two', 'three'],
-      ['four', 'five', 'six'],
-      ['seven', 'eight', 'nine'],
-      ['one', 'four', 'seven'],
-      ['two', 'five', 'eight'],
-      ['three', 'six', 'nine'],
-      ['one', 'five', 'nine'],
-      ['three', 'five', 'seven']
+    checkBoardClass = [
+      ['.one', '.two', '.three'],
+      ['.four', '.five', '.six'],
+      ['.seven', '.eight', '.nine'],
+      ['.one', '.four', '.seven'],
+      ['.two', '.five', '.eight'],
+      ['.three', '.six', '.nine'],
+      ['.one', '.five', '.nine'],
+      ['.three', '.five', '.seven']
     ];
 
 // listen to all squares
@@ -24,7 +24,10 @@ function clickedCell(e) {
     console.log('clickCount: ' + clickCount);
     
     // if 9th click, clear board, or else carry on
-    if(clickCount >= 9){
+    if( elSelector('.message').length > 0 ){
+      resetToStart();
+      document.querySelector('.message').innerHTML = "";
+    } else if(clickCount >= 9){
       resetToStart();
     } else {
       
@@ -48,17 +51,19 @@ function clickedCell(e) {
 }
 
 function checkWinningCombo(letter){
-  // cylce through array of options to see if we have a match. If a match, then a winner
-  for (let i = 0; i < checkBoard.length; i++) {
-    [k,l,m] = [checkBoard[i][0],checkBoard[i][1],checkBoard[i][2]]
-    kEdit = '.'+k, lEdit = '.'+l, mEdit = '.'+m;
-
-    if( divSelector(kEdit) == letter  && divSelector(lEdit) == letter && divSelector(mEdit) == letter ){
+  // cylce through checkBoard array, check if there's a winning match. If a match, then a winner
+  for (let i = 0; i < checkBoardClass.length; i++) {
+    // find combinations from array
+    [k,l,m] = [checkBoardClass[i][0],checkBoardClass[i][1],checkBoardClass[i][2]];
+    
+    // if a winner!
+    if( elSelector(k) == letter  && elSelector(l) == letter && elSelector(m) == letter ){
       document.querySelector('.message').innerHTML = 'We have a winner! Game Over!';
     }
-    if( divSelector(kEdit) == letter  && divSelector(lEdit) == letter && divSelector(mEdit) == letter && document.querySelector('.message').innerHTML.length > 0){
-      resetToStart();
-    }
+    // // recode this, resets board 
+    // if( divSelector(k) == letter  && divSelector(l) == letter && divSelector(m) == letter && document.querySelector('.message').innerHTML.length > 0){
+    //   resetToStart();
+    // }
   }
 }
 
@@ -72,6 +77,6 @@ function resetToStart(){
 }
 
 // select element and check innerHTML
-function divSelector(e){
+function elSelector(e){
   return document.querySelector(e).innerHTML;
 }
