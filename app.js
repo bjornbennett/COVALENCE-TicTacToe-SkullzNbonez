@@ -19,9 +19,7 @@ cells.forEach(cell => {
 
 // function to check squares
 function clickedCell(e) {
-  // helpers
-    //console.log(e);
-    console.log('clickCount: ' + clickCount);
+    //console.log('clickCount: ' + clickCount);
     
     // if 9th click, clear board, or else carry on
     if( elSelector('.message').length > 0 ){
@@ -50,20 +48,15 @@ function clickedCell(e) {
     }
 }
 
+// check cells if a winner
 function checkWinningCombo(letter){
-  // cylce through checkBoard array, check if there's a winning match. If a match, then a winner
   for (let i = 0; i < checkBoardClass.length; i++) {
-    // find combinations from array
     [k,l,m] = [checkBoardClass[i][0],checkBoardClass[i][1],checkBoardClass[i][2]];
     
-    // if a winner!
+    // if winner!
     if( elSelector(k) == letter  && elSelector(l) == letter && elSelector(m) == letter ){
       document.querySelector('.message').innerHTML = 'We have a winner! Game Over!';
     }
-    // // recode this, resets board 
-    // if( divSelector(k) == letter  && divSelector(l) == letter && divSelector(m) == letter && document.querySelector('.message').innerHTML.length > 0){
-    //   resetToStart();
-    // }
   }
 }
 

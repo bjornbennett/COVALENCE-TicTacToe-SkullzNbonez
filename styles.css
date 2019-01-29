@@ -29,3 +29,7 @@ body {
 .three, .six, .nine {
     border-left: 1px solid #000;
 }
+h2 {
+    line-height: 1;
+    height: 25px;
+}
