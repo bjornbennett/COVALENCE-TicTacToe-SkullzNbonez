@@ -1,55 +1,83 @@
-// variables
-let firstName = "Bobby",
-    lastName = "Brown";
-// const, modern var, unchanging
-const fullName = "Bobby Brown";
-// let, modern var. var is function scoped, and let is block scoped
-let person = {
-    age: "29",
-    dob: "01/01/01"
-};
-// array
-let listStuff = [ 'yes', 'no', 'maybe'];
+// gather all squares into array
+let cells = document.querySelectorAll('.row div'),
+    clickCount = 0,
+    checkBoard = [
+      ['one', 'two', 'three'],
+      ['four', 'five', 'six'],
+      ['seven', 'eight', 'nine'],
+      ['one', 'four', 'seven'],
+      ['two', 'five', 'eight'],
+      ['three', 'six', 'nine'],
+      ['one', 'five', 'nine'],
+      ['three', 'five', 'seven']
+    ];
 
-let personTemplate = {
-    firstName: "Bobby",
-    lastName: "Brown",
-    age: 20
-};
-// .keys tells the key part of key/value pairs
-console.log( '.keys returns all keys in an object: ' + Object.keys(personTemplate) );
+// listen to all squares
+cells.forEach(cell => {
+  cell.addEventListener('click', clickedCell);
+});
 
-let val1 = 15,
-    val2 = 22;
-// x += y is shorthand for x = x + y.
-console.log(val1 += val2);
+// function to check squares
+function clickedCell(e) {
+    
+  // helpers
+    //console.log(e);
+    console.log('clickCount: ' + clickCount);
+    
+    // if 9th click, clear board, or else carry on
+    if(clickCount >= 9){
+      
+      // should empty all cells
+      resetToStart();
 
-// destructuring is a JS expression to unpack values from arrays into distinct variables
-let a, b, c;
-[a,b,c] = [20,100,60];
-console.log(a,b,c);
+    } else {
+      
+      // if cell is empty, add something. Otherwise, throw alert
+      if( e.target.innerHTML.length == 0){
+        
+        // increase click count
+        clickCount++;
 
-function parseProtocol(url) { 
-    var parsedURL = /^(\w+)\:\/\/([^\/]+)\/(.*)$/.exec(url);
-    if (!parsedURL) {
-      return false;
+        // check if even or odd, X or O
+        if(clickCount % 2 == true){
+          e.target.innerHTML = 'X';
+        } else if(clickCount % 2 == false){
+          e.target.innerHTML = 'O';
+        }
+        checkWinningCombo('X');
+        checkWinningCombo('O');
+
+      } else {
+        alert("this cell has already been played! Please click another!");
+      }
     }
-    console.log(parsedURL); // ["https://developer.mozilla.org/en-US/Web/JavaScript", "https", "developer.mozilla.org", "en-US/Web/JavaScript"]
-  
-    var [, protocol, fullhost, fullpath] = parsedURL;
-    return protocol;
+}
+
+function checkWinningCombo(letter){
+  // cylce through array of options
+  for (let i = 0; i < checkBoard.length; i++) {
+    [k,l,m] = [checkBoard[i][0],checkBoard[i][1],checkBoard[i][2]]
+    kEdit = '.'+k, lEdit = '.'+l, mEdit = '.'+m;
+
+    if( divSelector(kEdit) == letter  && divSelector(lEdit) == letter && divSelector(mEdit) == letter ){
+      document.querySelector('.message').innerHTML = 'We have a winner! Game Over!';
+    }
+    if( divSelector(kEdit) == letter  && divSelector(lEdit) == letter && divSelector(mEdit) == letter && document.querySelector('.message').innerHTML.length > 0){
+      resetToStart();
+    }
   }
-  console.log(parseProtocol('https://developer.mozilla.org/en-US/Web/JavaScript')); // "https"
+}
 
-// shorthand ternary expression
-let value = 6;
-value == 5 ? console.log('yes it is true') : console.log('no, it is false');
+// reset game
+function resetToStart(){
+  cells.forEach(cell => {
+    cell.innerHTML = "";
+  });
+  clickCount = 0;
+  console.log('Game has been reset!');
+}
 
-// set array
-let friends = ['first','second','third','fourth','fifth'];
-// WHILE LOOP: keep looping while the count variable is less that the length of friends array
-let count = 0;
-while( count < friends.length ){
-    console.log('friends array: #'+friends[count]);
-    count++;
+// select element and check innerHTML
+function divSelector(e){
+  return document.querySelector(e).innerHTML;
 }

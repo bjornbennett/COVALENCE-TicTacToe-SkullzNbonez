@@ -15,16 +15,17 @@ body {
     float: left;
     height: 100px;
     width: 100px;
+    line-height: 6;
 }
-.row .top {
+.one, .two, .three {
     border-bottom: 1px solid #000;
 }
-.row .bottom {
+.seven, .eight, .nine {
     border-top: 1px solid #000;
 }
-.row .left {
+.one, .four, .seven {
     border-right: 1px solid #000;
 }
-.row .right {
+.three, .six, .nine {
     border-left: 1px solid #000;
 }
