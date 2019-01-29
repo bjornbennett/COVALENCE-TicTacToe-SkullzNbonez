@@ -19,42 +19,36 @@ cells.forEach(cell => {
 
 // function to check squares
 function clickedCell(e) {
-    
   // helpers
     //console.log(e);
     console.log('clickCount: ' + clickCount);
     
     // if 9th click, clear board, or else carry on
     if(clickCount >= 9){
-      
-      // should empty all cells
       resetToStart();
-
     } else {
       
-      // if cell is empty, add something. Otherwise, throw alert
+      // if cell is empty, add X or O
       if( e.target.innerHTML.length == 0){
-        
         // increase click count
         clickCount++;
 
-        // check if even or odd, X or O
+        // check if even or odd click, add X or O
         if(clickCount % 2 == true){
           e.target.innerHTML = 'X';
         } else if(clickCount % 2 == false){
           e.target.innerHTML = 'O';
         }
+        // check if we have a winner
         checkWinningCombo('X');
         checkWinningCombo('O');
 
-      } else {
-        alert("this cell has already been played! Please click another!");
       }
     }
 }
 
 function checkWinningCombo(letter){
-  // cylce through array of options
+  // cylce through array of options to see if we have a match. If a match, then a winner
   for (let i = 0; i < checkBoard.length; i++) {
     [k,l,m] = [checkBoard[i][0],checkBoard[i][1],checkBoard[i][2]]
     kEdit = '.'+k, lEdit = '.'+l, mEdit = '.'+m;
