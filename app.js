@@ -21,7 +21,7 @@ cells.forEach(cell => {
 
 // function to check squares
 function clickedCell(e) {
-    //console.log('clickCount: ' + clickCount);
+    console.log('clickCount: ' + clickCount);
     
     // if 9th click, clear board, or else carry on
     if( elSelector('.message').length > 0 ){
@@ -54,6 +54,12 @@ function clickedCell(e) {
 
 // check cells if a winner
 function checkWinningCombo(letter){
+  if(clickCount > 8){
+    cells.forEach(cell => {
+      let msg = 'Arrrrh arrrrrh! <strong>DRAW!</strong><br><span>click the board to start another game</span>';
+      document.querySelector('.message').innerHTML = msg;
+    });
+  }
   for (let i = 0; i < checkBoardClass.length; i++) {
     [k,l,m] = [checkBoardClass[i][0],checkBoardClass[i][1],checkBoardClass[i][2]];
     
