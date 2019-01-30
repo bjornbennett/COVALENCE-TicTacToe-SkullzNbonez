@@ -47,6 +47,9 @@ function clickedCell(e) {
 
       }
     }
+    if(clickCount >= 3){
+      document.querySelector('#board').classList.remove('shudder');
+    }
 }
 
 // check cells if a winner
@@ -75,6 +78,7 @@ function resetToStart(){
   cells.forEach(cell => {
     cell.classList.remove('cream1', 'cream2', 'cream3');
   });
+  document.querySelector('#board').classList.add('shudder');
   console.log('Game has been reset!');
 }
 
