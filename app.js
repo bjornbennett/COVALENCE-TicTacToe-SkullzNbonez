@@ -10,7 +10,9 @@ let cells = document.querySelectorAll('.row div'),
       ['.three', '.six', '.nine'],
       ['.one', '.five', '.nine'],
       ['.three', '.five', '.seven']
-    ];
+    ],
+    img1 = '<img src="images/bones.svg">',
+    img2 = '<img src="images/skull.svg">';
 
 // listen to all squares
 cells.forEach(cell => {
@@ -24,7 +26,6 @@ function clickedCell(e) {
     // if 9th click, clear board, or else carry on
     if( elSelector('.message').length > 0 ){
       resetToStart();
-      document.querySelector('.message').innerHTML = "";
     } else if(clickCount >= 9){
       resetToStart();
     } else {
@@ -36,13 +37,13 @@ function clickedCell(e) {
 
         // check if even or odd click, add X or O
         if(clickCount % 2 == true){
-          e.target.innerHTML = 'X';
+          e.target.innerHTML = img1;
         } else if(clickCount % 2 == false){
-          e.target.innerHTML = 'O';
+          e.target.innerHTML = img2;
         }
         // check if we have a winner
-        checkWinningCombo('X');
-        checkWinningCombo('O');
+        checkWinningCombo(img1);
+        checkWinningCombo(img2);
 
       }
     }
@@ -55,7 +56,11 @@ function checkWinningCombo(letter){
     
     // if winner!
     if( elSelector(k) == letter  && elSelector(l) == letter && elSelector(m) == letter ){
-      document.querySelector('.message').innerHTML = 'We have a winner! Game Over!';
+      let msg = 'Arrrrh arrrrrh! <strong>Looky like we \'ava champ!!</strong><br> <span>click the board to start another game</span>';
+      document.querySelector('.message').innerHTML = msg;
+      document.querySelector(k).classList.add('cream1');
+      document.querySelector(l).classList.add('cream2');
+      document.querySelector(m).classList.add('cream3');
     }
   }
 }
@@ -66,6 +71,10 @@ function resetToStart(){
     cell.innerHTML = "";
   });
   clickCount = 0;
+  document.querySelector('.message').innerHTML = "";
+  cells.forEach(cell => {
+    cell.classList.remove('cream1', 'cream2', 'cream3');
+  });
   console.log('Game has been reset!');
 }
 
