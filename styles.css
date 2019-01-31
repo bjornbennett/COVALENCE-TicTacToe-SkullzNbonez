@@ -17,6 +17,11 @@ body {
     clear: both;
     width: 302px;
     margin: 0 auto;
+    position: relative;
+}
+.inner-board {
+    margin: 0 auto;
+    position: relative;
 }
 .row div {
     float: left;
@@ -129,10 +134,18 @@ h2 {
     animation-duration: 1.3s;
     animation-iteration-count: infinite;
 }
+.blood{
+    background: #694747;
+}
 .shudder {
     animation-name: shudder;
     animation-duration: 0.6s;
     animation-iteration-count: 1;
+}
+.dodge {
+    animation-name: dodge;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
 }
 @keyframes bounce1 {
     0% { top: 0; }
@@ -171,4 +184,12 @@ h2 {
     85% { left: 2px;}
     95% { left: 0px;}
     100% { left: 0px;}
+}
+@keyframes dodge {
+    0% { left: 0px; top: 0px}
+    25% { left: 5px; top: 0px}
+    50% { left: 5px; top: 5px}
+    75% { left: -5px; top: 5px}
+    95% { left: -5px; top: 0px}
+    100% { left: 0px; top: 0px}
 }
