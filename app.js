@@ -21,7 +21,7 @@ cells.forEach(cell => {
 
 // ******* FUNCTION: to check squares
 function clickedCell(e) {
-    console.log('clickCount: ' + clickCount);
+    // console.log('clickCount: ' + clickCount);  
     
     // if message has content, reset the board.
     if( elSelector('.message').length > 0 ){ 
@@ -71,15 +71,16 @@ function checkWinningCombo(content){
   }
 
   // if draw
-  if(clickCount == 9 && document.querySelector('.row div').classList.contains('cream1') === 0 ){
-    let msg = 'Arrrrh arrrrrh! <strong>DRAW!</strong><br><span>click the board to start another game</span>';
-    document.querySelector('.message').classList = msg;
-    console.log('clickcount 9??');
-    console.log('draw draw, we iz poor');
-    // document.querySelector('.inner-board').classList.add('dodge');
-    cells.forEach(cell => {
-      cell.classList.add('blood');
-    });
+  if( clickCount == 9 ){
+    if( document.querySelector('.row div').classList.contains('cream1') == false ){
+      let msg = 'Arrrrh arrrrrh! <strong>DRAW!</strong><br><span>click the board to start another game</span>';
+      document.querySelector('.message').innerHTML = msg;
+      console.log('draw draw, we iz poor');
+      document.querySelector('.inner-board').classList.add('dodge');
+      cells.forEach(cell => {
+        cell.classList.add('blood');
+      });
+    }
   }
 }
 
