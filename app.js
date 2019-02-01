@@ -66,7 +66,6 @@ function checkWinningCombo(content){
       cells.forEach(cell => {
         cell.classList.add('blood');
       });
-      console.log('winner winner, chicken dinner');
     }
   }
 
@@ -75,7 +74,6 @@ function checkWinningCombo(content){
     if( document.querySelector('.row div').classList.contains('cream1') == false ){
       let msg = 'Arrrrh arrrrrh! <strong>DRAW!</strong><br><span>click the board to start another game</span>';
       document.querySelector('.message').innerHTML = msg;
-      console.log('draw draw, we iz poor');
       document.querySelector('.inner-board').classList.add('dodge');
       cells.forEach(cell => {
         cell.classList.add('blood');
