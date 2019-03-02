@@ -1,18 +1,6 @@
 // ********* SET VARIABLES: gather all squares into array
 let cells = document.querySelectorAll('.row div'),
-    clickCount = 0,
-    checkBoardClass = [
-      ['.one', '.two', '.three'],
-      ['.four', '.five', '.six'],
-      ['.seven', '.eight', '.nine'],
-      ['.one', '.four', '.seven'],
-      ['.two', '.five', '.eight'],
-      ['.three', '.six', '.nine'],
-      ['.one', '.five', '.nine'],
-      ['.three', '.five', '.seven']
-    ],
-    img1 = '<img src="images/bones.svg">',
-    img2 = '<img src="images/skull.svg">';
+    clickCount = 0;
 
 // ********* MAIN EVENT: listen to all squares for clicks. will check state of game to determine what to do next
 cells.forEach(cell => {
@@ -22,16 +10,18 @@ cells.forEach(cell => {
 // ******* FUNCTION: to check squares
 function clickedCell(e) {
     // console.log('clickCount: ' + clickCount);  
-    
+    let img1 = '<img src="images/bones.svg" class="skullnbones clicked">',
+        img2 = '<img src="images/skull.svg" class="skullnbones clicked">';
+
     // if message has content, reset the board.
     if( elSelector('.message').length > 0 ){ 
       resetToStart();
     } else if(clickCount >= 9){ // if it's 9th click, clear board, or else carry on
       resetToStart();
     } else {
-      
-      if( e.target.innerHTML.length == 0){// if cell is empty, add X or O
+      if( e.target.classList.contains('clicked') == false){// if cell is empty, add X or O
         clickCount++; // increase click count
+        e.target.classList.add('clicked');
 
         // check if even or odd click, add X or O
         if(clickCount % 2 == true){ // oddNumber % 2 will return true for odd, so it is odd number
@@ -52,6 +42,18 @@ function clickedCell(e) {
 
 // ******** FUNCTION: check cells for a winner
 function checkWinningCombo(content){
+
+  let checkBoardClass = [
+    ['.one', '.two', '.three'],
+    ['.four', '.five', '.six'],
+    ['.seven', '.eight', '.nine'],
+    ['.one', '.four', '.seven'],
+    ['.two', '.five', '.eight'],
+    ['.three', '.six', '.nine'],
+    ['.one', '.five', '.nine'],
+    ['.three', '.five', '.seven']
+  ];
+
   for (let i = 0; i < checkBoardClass.length; i++) {
     [k,l,m] = [checkBoardClass[i][0],checkBoardClass[i][1],checkBoardClass[i][2]];
     
