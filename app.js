@@ -96,6 +96,10 @@ function resetToStart(){
   });
   document.querySelector('#board').classList.add('shudder');
   document.querySelector('.inner-board').classList.remove('dodge');
+  let allDiv = document.querySelectorAll('.row div');
+  allDiv.forEach(element => {
+    element.classList.remove('clicked');
+  });
   console.log('Game has been reset!');
 }
 
